@@ -1,0 +1,659 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#e9eceb;
+}
+
+/* ==== Background lá 2 bên ==== */
+/*
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  width:300px;
+  height:100%;
+  background:url('https://i.imgur.com/8Km9tLL.png') no-repeat center;
+  background-size:contain;
+  opacity:0.25;
+  z-index:0;
+}
+body::before{left:0;}
+body::after{right:0; transform:scaleX(-1);}
+*/
+
+/* ==== Container chính ==== */
+.wrapper{
+  max-width:750px;
+  margin:auto;
+  background:#fff;
+  padding:80px 40px;
+  position:relative;
+  z-index:2;
+}
+
+/* ==== Title ==== */
+.section-title{
+  text-align:center;
+  letter-spacing:4px;
+  font-size:14px;
+  color:#6c7a70;
+  margin-bottom:70px;
+  font-family:'Playfair Display',serif;
+}
+
+/* ==== Couple ==== */
+.couple{
+  display:flex;
+  justify-content:center;
+  gap:80px;
+  flex-wrap:wrap;
+}
+
+.polaroid{
+  background:#fff;
+  padding:15px;
+  width:260px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  transition:0.6s;
+  opacity:0;
+  transform:translateY(60px) rotate(-5deg);
+}
+.polaroid:nth-child(2){
+  transform:translateY(60px) rotate(6deg);
+}
+
+.polaroid img{
+  width:100%;
+  height:330px;
+  object-fit:cover;
+}
+
+.polaroid .name{
+  text-align:center;
+  margin-top:15px;
+  font-family:'Playfair Display',serif;
+  font-size:18px;
+  color:#2f3e34;
+}
+
+/* ==== Album ==== */
+.album-title{
+  margin-top:120px;
+  text-align:center;
+  letter-spacing:3px;
+  font-size:14px;
+  font-family:'Playfair Display',serif;
+  color:#6c7a70;
+}
+
+.gallery{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  border-radius:6px;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.6s;
+}
+
+.gallery img:hover{
+  transform:scale(1.03);
+}
+
+/* ==== Hiệu ứng khi hiện ==== */
+.show{
+  opacity:1 !important;
+  transform:translateY(0) rotate(0) !important;
+}
+
+/* ==== Popup ==== */
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s;
+  z-index:999;
+}
+
+.lightbox.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.lightbox img{
+  max-width:85%;
+  max-height:85%;
+  border-radius:10px;
+  animation:zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(0.8);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+.close{
+  position:absolute;
+  top:30px;
+  right:40px;
+  font-size:32px;
+  color:#fff;
+  cursor:pointer;
+}
+
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:45px;
+  color:#fff;
+  cursor:pointer;
+  padding:20px;
+}
+.prev{left:20px;}
+.next{right:20px;}
+
+/* ==== Mobile ==== */
+@media(max-width:768px){
+  .wrapper{padding:60px 20px;}
+  .gallery{grid-template-columns:1fr;}
+}
+
+/* ======================================END The love of story================================== */
+
+
+:root {
+    --dark-green: #1a3318;
+    --gold: #c5a059;
+    --bg-light: #f9fbf9;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+
+/* Section 1 Styling */
+.story-section {
+    background: var(--bg-light);
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.profile-card img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.name-label span {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--dark-green);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.photo-grid img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.more-photos {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Section 2 Styling (Green background) */
+.info-section {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.parents-info {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.8rem;
+    margin-bottom: 40px;
+}
+
+.couple-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white;
+    margin: 10px 0;
+}
+
+.and-symbol {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    color: var(--gold);
+}
+
+.time {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#show-gift-btn {
+    background: white;
+    color: var(--dark-green);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Section 3 Styling (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #7a8e52; /* Màu xanh lơ nhạt hơn */
+    color: white;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 10px;
+}
+
+.qr-item img {
+    width: 120px;
+    margin: 10px 0;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+
+/* Màu nền xanh đậm đồng bộ với ảnh 2 và 4 */
+.location-section {
+    background-color: #1a3318; 
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Khung địa điểm hình oval trắng */
+.location-card {
+    background: white;
+    color: #1a3318;
+    padding: 20px 40px;
+    border-radius: 50px; /* Tạo hình oval */
+    display: inline-block;
+    max-width: 80%;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Container cho bản đồ */
+.map-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.2);
+}
+
+.map-wrapper iframe {
+    display: block;
+}
+
+/* Hiệu ứng mượt khi cuộn trang */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+:root {
+    --primary-green: #2d5a27;
+    --light-green: #f0f4ef;
+    --gold: #c5a059;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-green);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Trang bìa */
+.cover-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 1s ease-in-out, opacity 0.8s;
+}
+
+.cover-content {
+    text-align: center;
+    border: 2px solid var(--primary-green);
+    padding: 50px;
+    position: relative;
+    background: white;
+}
+
+.bride-groom-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+
+#open-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+#open-btn:hover {
+    background: var(--gold);
+}
+
+/* Nội dung thiệp */
+.hidden {
+    display: none;
+}
+
+#main-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    min-height: 100vh;
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.intro {
+    background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
+                      url('https://www.transparenttextures.com/patterns/leaves.png');
+}
+
+.names {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    margin: 20px 0;
+}
+
+.info-grid {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.info-item h3 {
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Animation khi mở thiệp */
+.fade-out {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+
+/* Section Hộp mừng cưới */
+.gift-box-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #fff;
+    position: relative;
+}
+
+.section-title-dark {
+    font-family: 'Playfair Display', serif;
+    color: #2d5a27;
+    margin-bottom: 40px;
+}
+
+/* Hiệu ứng phong bao lì xì */
+.envelope-wrapper {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.envelope-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.red-envelope {
+    width: 120px;
+    height: 160px;
+    background: #b22222; /* Màu đỏ thẫm nghệ thuật */
+    border-radius: 10px;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(178, 34, 34, 0.3);
+    border: 2px solid #d4af37;
+}
+
+.hỷ-symbol {
+    color: #d4af37;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.click-hint {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+}
+
+/* Modal Popup */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 550px;
+    margin: 50px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: zoomIn 0.4s ease;
+}
+
+.modal-header {
+    background: #6b7c4a; /* Màu xanh lơ nhạt của mẫu ảnh 3 */
+    color: white;
+    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.qr-container {
+    display: flex;
+    padding: 30px 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.qr-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+}
+
+.bank-title {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.qr-item img {
+    width: 160px;
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.bank-details {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    color: #666;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
